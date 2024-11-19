@@ -11,20 +11,20 @@ public class Pokemon
     
     public string Message {get; private set;}
 
-    public List<IMove> moves = new List<IMove>();
+    public List<IMove> Moves { get; set; }
 
     public Pokemon(string name, int hp, List<IMove> moves)
     {
         Name = name;
         Hp = hp;
         MaxHealth = hp;
-        this.moves = moves;
+        Moves = moves;
         Message = "";
     }
 
     public void UseMove(Pokemon target, int moveIndex)
     {
-        IMove move = moves[moveIndex];
+        IMove move = Moves[moveIndex];
         if (move.IsSelfTarget)
         {
             move.Use(this);
