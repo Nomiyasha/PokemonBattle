@@ -37,16 +37,16 @@ public class Pokemon
 
     public void UpdateHealth(int change)
     {
-        Hp += change;
+        Hp += Math.Max(0, change);
     }
 
     public void UpdateAttack(int change)
     {
-        Attack += change;
+        Attack += Math.Max(0, change);
     }
 
     public void UpdateDefence(int change)
     {
-        Defence += change; 
+        Defence += Math.Max(0, change); 
     }
 }
