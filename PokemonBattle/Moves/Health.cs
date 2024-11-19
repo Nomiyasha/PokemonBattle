@@ -9,6 +9,6 @@ public class Health : IMove
     
     public void Use(Pokemon target)
     {
-        target.Hp += Change;
+        target.UpdateHealth(Change);
     }
 }

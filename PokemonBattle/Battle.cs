@@ -22,7 +22,7 @@ public class Battle
             if (turnIndex == 2){turnIndex = 0;}
             
             if(turnIndex == 0){
-                Player.Attack(Enemy, playermove);
+                Player.UseMove(Enemy, playermove);
                 Output.DisplayPokemons(Player,Enemy, Player.Message);
                 playermove = Output.InputMenu(Player.moves.ToArray()); // input
                 
@@ -34,7 +34,7 @@ public class Battle
                  int enemymove = 0; // random?
                  Console.WriteLine("Enemy thinking...");
                  Thread.Sleep(500);
-                 Enemy.Attack(Player, enemymove);
+                 Enemy.UseMove(Player, enemymove);
             }
             turnIndex++;
         }

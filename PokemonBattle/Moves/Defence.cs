@@ -9,6 +9,6 @@ public class Defence : IMove
 
     public void Use(Pokemon target)
     {
-        target.Defence += Change;
+        target.UpdateDefence(Change);
     }
 }
