@@ -1,3 +1,5 @@
+using PokemonBattle.Enums;
+
 namespace PokemonBattle;
 
 public class Pokemon
@@ -8,17 +10,18 @@ public class Pokemon
     public bool IsAlive => Hp > 0;
     public int Attack { get; private set; }
     public int Defence { get; private set; }
-    
+    public Elements Type { get; }
     public string Message {get; private set;}
 
     public List<IMove> moves = new List<IMove>();
 
-    public Pokemon(string name, int hp, List<IMove> moves)
+    public Pokemon(string name, int hp, List<IMove> moves, Elements type)
     {
         Name = name;
         Hp = hp;
         MaxHealth = hp;
         this.moves = moves;
+        Type = type;
         Message = "";
     }
 
