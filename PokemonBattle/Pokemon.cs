@@ -3,11 +3,11 @@ namespace PokemonBattle;
 public class Pokemon
 {
     public string Name { get; }
-    public int Hp { get; set; }
+    public int Hp { get; private set; }
     private int MaxHealth { get; }
     public bool IsAlive => Hp > 0;
-    public int Atk { get; set; }
-    public int Defence { get; set; }
+    public int Attack { get; private set; }
+    public int Defence { get; private set; }
     
     public string Message {get; private set;}
 
@@ -22,7 +22,7 @@ public class Pokemon
         Message = "";
     }
 
-    public void Attack(Pokemon target, int moveIndex)
+    public void UseMove(Pokemon target, int moveIndex)
     {
         IMove move = moves[moveIndex];
         if (move.IsSelfTarget)
@@ -35,5 +35,18 @@ public class Pokemon
         this.Message = $"{Name} used {move.Name}";
     }
 
+    public void UpdateHealth(int change)
+    {
+        Hp += Math.Max(0, change);
+    }
 
+    public void UpdateAttack(int change)
+    {
+        Attack += Math.Max(0, change);
+    }
+
+    public void UpdateDefence(int change)
+    {
+        Defence += Math.Max(0, change); 
+    }
 }

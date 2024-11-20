@@ -8,6 +8,6 @@ public class Attack : IMove
     public required string Description { get; init; }
     public void Use(Pokemon target)
     {
-        target.Atk += Change;
+        target.UpdateAttack(Change);
     }
 }
