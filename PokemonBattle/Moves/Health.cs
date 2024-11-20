@@ -12,6 +12,13 @@ public class Health : IMove
     
     public void Use(Pokemon target)
     {
-        target.UpdateHealth(Change);
+        if (Type == Elements.None)
+        {
+            target.UpdateHealth(Change);
+        }
+        else
+        {
+            target.UpdateHealth(Change, Type);
+        }
     }
 }

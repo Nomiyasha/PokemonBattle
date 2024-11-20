@@ -43,6 +43,12 @@ public class Pokemon
         Hp += Math.Max(0, change);
     }
 
+    public void UpdateHealth(int change, Elements type)
+    {
+        // Check type to affect health
+        Hp += Math.Max(0, change);
+    }
+
     public void UpdateAttack(int change)
     {
         Attack += Math.Max(0, change);
