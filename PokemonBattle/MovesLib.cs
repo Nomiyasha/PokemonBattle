@@ -17,26 +17,24 @@ namespace PokemonBattle
             }
         };
 
-        public static readonly Dictionary<string, Health> attackMoves = new()
+        public static readonly Dictionary<string, Attack> attackMoves = new()
         {
-            { "Sharpen", new Health 
+            { "Sharpen", new Attack 
                 {
                     Name = "sharpen",
                     Description = "Sharpen stuff.",
-                    Type = Elements.Normal,
                     IsSelfTarget = false, 
                     Change = 10
                 }
             }
         };
 
-        public static readonly Dictionary<string, Health> defenceMoves = new()
+        public static readonly Dictionary<string, Defence> defenceMoves = new()
         {
-            { "Stabilize", new Health 
+            { "Stabilize", new Defence 
                 {
                     Name = "Stabilize",
                     Description = "Become stabilize.",
-                    Type = Elements.Normal,
                     IsSelfTarget = false, 
                     Change = 25
                 }
