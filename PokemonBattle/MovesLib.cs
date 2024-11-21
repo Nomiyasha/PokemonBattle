@@ -10,7 +10,7 @@ namespace PokemonBattle
                 {
                     Name = "Scratch",
                     Description = "Do scratch.",
-                    Type = Elements.Normal,
+                    Type = Elements.Fire,
                     IsSelfTarget = false, 
                     Change = -25
                 }

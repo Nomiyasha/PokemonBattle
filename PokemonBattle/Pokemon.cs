@@ -45,18 +45,15 @@ public class Pokemon
 
     public void UpdateHealth(int change, Elements type)
     {
-        if (ElementEffectiveness.Effectiveness[type] == Type)
-        {
-            change += 20;
-        } else if (ElementEffectiveness.Weakness[type] == Type)
+        if (ElementEffectiveness.Effectiveness.ContainsKey(type) && ElementEffectiveness.Effectiveness[type] == Type)
         {
             change -= 20;
-            // Damage decrease
-        } else
+        } else if (ElementEffectiveness.Effectiveness.ContainsKey(type) && ElementEffectiveness.Weakness[type] == Type)
         {
-            // No type effect (default)
-            Hp += Math.Max(0, change);
+            change += 20;
         }
+        
+        Hp = Math.Max(0, Hp + change);
     }
 
     public void UpdateAttack(int change)

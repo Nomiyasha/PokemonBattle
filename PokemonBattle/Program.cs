@@ -7,6 +7,9 @@ class Program
     static void Main(string[] args)
     {
         IMove[] moves = [
+            MovesLib.healthMoves["Scratch"],
+            MovesLib.healthMoves["Scratch"],
+            MovesLib.healthMoves["Scratch"],
             MovesLib.healthMoves["Scratch"]
         ];
         
