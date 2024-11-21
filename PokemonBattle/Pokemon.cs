@@ -48,7 +48,7 @@ public class Pokemon
         if (ElementEffectiveness.Effectiveness.ContainsKey(type) && ElementEffectiveness.Effectiveness[type] == Type)
         {
             change -= 20;
-        } else if (ElementEffectiveness.Effectiveness.ContainsKey(type) && ElementEffectiveness.Weakness[type] == Type)
+        } else if (ElementEffectiveness.Weakness.ContainsKey(type) && ElementEffectiveness.Weakness[type] == Type)
         {
             change += 20;
         }
