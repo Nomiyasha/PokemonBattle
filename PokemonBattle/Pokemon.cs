@@ -55,7 +55,7 @@ public class Pokemon
         
         Hp = Math.Max(0, Hp + change);
     }
-
+ 
     public void UpdateAttack(int change)
     {
         Attack += Math.Max(0, change);
