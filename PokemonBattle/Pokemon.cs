@@ -47,9 +47,10 @@ public class Pokemon
     {
         if (ElementEffectiveness.Effectiveness[type] == Type)
         {
-            // Damage increase
+            change += 20;
         } else if (ElementEffectiveness.Weakness[type] == Type)
         {
+            change -= 20;
             // Damage decrease
         } else
         {
