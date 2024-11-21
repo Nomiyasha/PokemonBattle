@@ -25,6 +25,17 @@ public class Pokemon
         Message = "";
     }
 
+    public void UpdateMoves(IMove move)
+    {
+        if (moves.Count < 4)
+        {
+            moves.Add(move);
+        } else
+        {
+            // Implement input logic to replace another move, or cancel replacements.
+        }
+    }
+
     public void UseMove(Pokemon target, int moveIndex)
     {
         IMove move = moves[moveIndex];
