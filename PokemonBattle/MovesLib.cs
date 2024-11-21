@@ -2,17 +2,43 @@ using PokemonBattle.Enums;
 
 namespace PokemonBattle
 {
-    class MovesLib
+    public static class MovesLib
     {
-        Dictionary<string, Health> healthMoves = new()
+        public static readonly Dictionary<string, Health> healthMoves = new()
         {
             { "Scratch", new Health 
                 {
-                    IsSelfTarget = false, 
                     Name = "Scratch",
-                    Change = -25,
                     Description = "Do scratch.",
-                    Type = Elements.Normal
+                    Type = Elements.Normal,
+                    IsSelfTarget = false, 
+                    Change = -25
+                }
+            }
+        };
+
+        public static readonly Dictionary<string, Health> attackMoves = new()
+        {
+            { "Sharpen", new Health 
+                {
+                    Name = "sharpen",
+                    Description = "Sharpen stuff.",
+                    Type = Elements.Normal,
+                    IsSelfTarget = false, 
+                    Change = 10
+                }
+            }
+        };
+
+        public static readonly Dictionary<string, Health> defenceMoves = new()
+        {
+            { "Stabilize", new Health 
+                {
+                    Name = "Stabilize",
+                    Description = "Become stabilize.",
+                    Type = Elements.Normal,
+                    IsSelfTarget = false, 
+                    Change = 25
                 }
             }
         };
