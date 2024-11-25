@@ -5,24 +5,20 @@ namespace PokemonBattle;
 public class Pokemon
 {
     public string Name { get; }
-    public int Hp { get; private set; }
-    private int MaxHealth { get; }
-    public bool IsAlive => Hp > 0;
-    public int Attack { get; private set; }
-    public int Defence { get; private set; }
+    public Stat Health { get; }
+    public bool IsAlive => Health.CurrentStat > 0;
+    public Stat Attack { get; }
+    public Stat Defence { get; }
     public Elements Type { get; }
-    public string Message {get; private set;}
 
     public List<IMove> moves = new List<IMove>();
 
-    public Pokemon(string name, int hp, List<IMove> moves, Elements type)
+    public Pokemon(string name, Stat health, List<IMove> moves, Elements type)
     {
         Name = name;
-        Hp = hp;
-        MaxHealth = hp;
+        Health = health;
         this.moves = moves;
         Type = type;
-        Message = "";
     }
 
     public void UpdateMoves(IMove move)
