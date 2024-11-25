@@ -7,21 +7,49 @@ namespace PokemonBattle;
 
 public class Output
 {
-    public static void DisplayPokemons(Pokemon player, Pokemon enemy, string message)
+
+    private const int width = 28;
+    private const int height = 4;
+    public static void DisplayPokemons(Pokemon player, Pokemon enemy)
     {
         Console.Clear();
         Console.WriteLine($"{player.Name}    vs    {enemy.Name}");
         Console.WriteLine($"{player.Hp}              {enemy.Hp}");
         Console.WriteLine("");
-        Console.WriteLine($"{message}");
-        
     }
 
-    public static int InputMenu(IMove[] moves){
+    private static string GenerateMessage(Pokemon pokemon, IMove move)
+    {
+        return $"{pokemon.Name} used {move.Name} ¤";
+    }
+
+    private static string GenerateMessage()
+    {
+        return $"Press enter to continue when this symbol appears ¤";
+    }
+
+    public static void DisplayMessage(Pokemon pokemon, int moveIndex){
+        string messageText = "";
+        SymbolGrid grid = new SymbolGrid(height,width*2);
+        if(moveIndex == -1)
+        {
+            messageText = GenerateMessage();
+        }else{
+            messageText = GenerateMessage(pokemon, pokemon.moves[moveIndex]);
+        }
+        TextBox message = new TextBox(width*2,height,
+            "<Use the arrow keys to select a move>", 
+            messageText, new Position(0,0));
+        message.Draw(grid, false);
+        Console.CursorVisible = false;
+        grid.Display();
+        Console.CursorVisible = true;
+        Console.ReadKey(true);
+    }
+
+    public static int DisplayInputMenu(IMove[] moves){
         int cursorPosLeft = Console.CursorLeft;
         int cursorPosTop = Console.CursorTop;
-        int width = 20;
-        int height = 4;
         int[] selected = {0,0};
         int index = 0;
         
