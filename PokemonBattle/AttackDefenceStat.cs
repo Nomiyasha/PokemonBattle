@@ -16,7 +16,6 @@ namespace PokemonBattle
         }
 
         // Calculates the change that shall be applied on stat, based on current modifier stage
-        // If 
         public void UpdateStat(int change)
         {
             CurrentModifierStage += change;
