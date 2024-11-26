@@ -48,19 +48,6 @@ public class Pokemon
     {
         Health.UpdateStat(change);
     }
-
-    public void UpdateHealth(int change, Elements type)
-    {
-        if (ElementEffectiveness.Effectiveness.ContainsKey(type) && ElementEffectiveness.Effectiveness[type] == Type)
-        {
-            change -= 20;
-        } else if (ElementEffectiveness.Weakness.ContainsKey(type) && ElementEffectiveness.Weakness[type] == Type)
-        {
-            change += 20;
-        }
-        
-        Health.UpdateStat(change);
-    }
     
     public void UpdateAttack(int change)
     {
