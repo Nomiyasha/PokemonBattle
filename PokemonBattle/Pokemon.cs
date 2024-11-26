@@ -5,15 +5,15 @@ namespace PokemonBattle;
 public class Pokemon
 {
     public string Name { get; }
-    public Stat Health { get; }
+    public HealthStat Health { get; }
     public bool IsAlive => Health.CurrentStat > 0;
-    public Stat Attack { get; }
-    public Stat Defence { get; }
+    public AttackDefenceStat Attack { get; }
+    public AttackDefenceStat Defence { get; }
     public Elements Type { get; }
 
     public List<IMove> moves = new List<IMove>();
 
-    public Pokemon(string name, Stat health, List<IMove> moves, Elements type)
+    public Pokemon(string name, HealthStat health, List<IMove> moves, Elements type)
     {
         Name = name;
         Health = health;
@@ -42,12 +42,11 @@ public class Pokemon
         {
             move.Use(target);
         }
-        this.Message = $"{Name} used {move.Name}";
     }
 
     public void UpdateHealth(int change)
     {
-        Hp += Math.Max(0, change);
+        Health.UpdateStat(change);
     }
 
     public void UpdateHealth(int change, Elements type)
@@ -60,16 +59,16 @@ public class Pokemon
             change += 20;
         }
         
-        Hp = Math.Max(0, Hp + change);
+        Health.UpdateStat(change);
     }
- 
+    
     public void UpdateAttack(int change)
     {
-        Attack += Math.Max(0, change);
+        Attack.UpdateStat(change);
     }
 
     public void UpdateDefence(int change)
     {
-        Defence += Math.Max(0, change); 
+        Defence.UpdateStat(change);
     }
 }

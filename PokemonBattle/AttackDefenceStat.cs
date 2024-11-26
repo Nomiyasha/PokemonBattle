@@ -16,6 +16,7 @@ namespace PokemonBattle
         }
 
         // Calculates the change that shall be applied on stat, based on current modifier stage
+        // If 
         public void UpdateStat(int change)
         {
             CurrentModifierStage += change;
@@ -27,6 +28,12 @@ namespace PokemonBattle
             else if (CurrentModifierStage < 0)
             {
                 CurrentStat = DefaultStat * (2 / (2 - CurrentModifierStage));
+            }
+            else if (CurrentModifierStage > 6 || CurrentModifierStage < 6)
+            {
+                // If modifier stage exceeds the possible stages nothing will happen
+                CurrentStat = CurrentStat;
+                CurrentModifierStage -= change;
             }
             else
             {
