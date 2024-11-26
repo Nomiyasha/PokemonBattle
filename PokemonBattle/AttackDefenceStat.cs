@@ -22,8 +22,8 @@ namespace PokemonBattle
 
             if (CurrentModifierStage > 6 || CurrentModifierStage < 6)
             {
-                // If modifier stage exceeds the possible stages nothing will happen
-                CurrentModifierStage -= change;
+                // If modifier stage exceeds the possible stages it will be set to max or min stage values
+                CurrentModifierStage = change > 6 ? 6 : -6;
             }
             else if (CurrentModifierStage > 0)
             {
