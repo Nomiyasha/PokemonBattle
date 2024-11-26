@@ -20,12 +20,13 @@ namespace PokemonBattle
         {
             CurrentModifierStage += change;
 
-            if (CurrentModifierStage > 6 || CurrentModifierStage < 6)
+            if (CurrentModifierStage > 6 || CurrentModifierStage < -6)
             {
                 // If modifier stage exceeds the possible stages it will be set to max or min stage values
                 CurrentModifierStage = CurrentModifierStage > 6 ? 6 : -6;
             }
-            else if (CurrentModifierStage > 0)
+            
+            if (CurrentModifierStage > 0)
             {
                 CurrentStat = DefaultStat * (1 + (CurrentModifierStage / 2));
             } 
