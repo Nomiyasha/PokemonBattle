@@ -4,8 +4,12 @@ namespace PokemonBattle;
 
 class Program
 {
+    
     static void Main(string[] args)
     {
+        Console.CursorVisible = false;
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        
         IMove[] moves = [
             MovesLib.healthMoves["Scratch"],
             MovesLib.healthMoves["Scratch"],

@@ -14,30 +14,35 @@ public class Battle
 
     public void DoBattle()
     {
-        int playermove = default;
+        int playermove = -1;
+        int enemymove = -1;
         int turnIndex = 0;
+        BattleUI UI = new BattleUI();
+
         while (Player.IsAlive && Enemy.IsAlive)
         {
-            
-            if (turnIndex == 2){turnIndex = 0;}
-            
-            if(turnIndex == 0){
+            if (turnIndex == 2)
+            {
+                turnIndex = 0;
+            }
+
+            if (turnIndex == 0)
+            {
+
+                UI.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
+                playermove = UI.DisplayInputMenu(Player.moves.ToArray()); // input
                 Player.UseMove(Enemy, playermove);
-                Output.DisplayPokemons(Player,Enemy, Player.Message);
-                playermove = Output.InputMenu(Player.moves.ToArray()); // input
-                
-                
             }
             else
             {
-                Output.DisplayPokemons(Player,Enemy, Enemy.Message);
-                 int enemymove = 0; // random?
-                 Console.WriteLine("Enemy thinking...");
-                 Thread.Sleep(500);
-                 Enemy.UseMove(Player, enemymove);
+                UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
+                enemymove = 0; // random?
+                Enemy.UseMove(Player, enemymove);
             }
+
             turnIndex++;
         }
+
         Console.WriteLine("Battle over");
     }
 }
