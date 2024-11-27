@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.CursorVisible = false;
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        
         
         IMove[] moves = [
             new Health 
@@ -37,7 +40,7 @@ class Program
         ];
         
         Pokemon p = new Pokemon("Charizard", 220, moves.ToList());
-        Pokemon enemy = new Pokemon("Test", 120, moves.ToList());
+        Pokemon enemy = new Pokemon("Squirtle", 120, moves.ToList());
         Battle battle = new Battle(p,enemy);
     }
 }

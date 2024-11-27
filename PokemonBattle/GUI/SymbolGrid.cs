@@ -36,6 +36,7 @@ public class SymbolGrid
             }
         }
     }
+    
     /// <summary>
     /// Displays the grid to the console through the Symbol.Draw() function.
     /// </summary>
@@ -46,18 +47,13 @@ public class SymbolGrid
             for (int j = 0; j < Width; j++)
             {
                 try
-                {
-                    Grid[i, j].Draw();
-                }
-                catch(Exception e)
-                {
-                    //Console.Write(e.Message);
-                }
-                
+                { Grid[i, j].Draw(); }
+                catch { }
             }
             Console.WriteLine();
         }
     }
+    
     /// <summary>
     /// Adds a Symbol on the grid at the coordinates of Position.
     /// If the coordinates are out of bounds the Symbol will not be added. 
@@ -67,12 +63,8 @@ public class SymbolGrid
     public void DrawToGrid(Symbol symbol, Position position)
     {
         try
-        {
-            Grid[position.Y, position.X] = symbol;
-        }
+        { Grid[position.Y, position.X] = symbol; }
         catch
-        {
-            //Do nothing - symbol out of bounds of the grid
-        }
+        { /* >>Do nothing - symbol out of bounds of the grid<< */ }
     }
 }

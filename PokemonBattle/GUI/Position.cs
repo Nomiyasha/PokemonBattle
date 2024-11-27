@@ -10,11 +10,4 @@ public class Position
         X = x;
         Y = y;
     }
-    
-    public Position(Position other)
-    {
-        X = other.X;
-        Y = other.Y;
-    }
-
 }
