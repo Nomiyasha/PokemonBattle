@@ -7,4 +7,5 @@ public interface IMove
     int Change { get; }
     string Description { get; }
     void Use(Pokemon target);
+    void Use(Pokemon user, Pokemon target);
 }

@@ -1,4 +1,5 @@
 using PokemonBattle.Enums;
+using PokemonBattle.Moves;
 
 namespace PokemonBattle;
 
@@ -40,7 +41,16 @@ public class Pokemon
             move.Use(this);
         } else
         {
-            move.Use(target);
+            // Checks for the case where health move is used against target (will attack and deal damage)
+            // which is required for sending both user and target stats for this specific case
+            if (typeof(HealthMove).IsInstanceOfType(move))
+            {
+                move.Use(this, target);
+            }
+            else
+            {
+                move.Use(target);
+            }
         }
     }
 

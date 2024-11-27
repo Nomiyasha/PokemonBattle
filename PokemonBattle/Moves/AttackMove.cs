@@ -2,24 +2,11 @@
 
 namespace PokemonBattle.Moves
 {
-    public class AttacKMove
+    public class AttackMove : Move
     {
-        public bool IsSelfTarget { get; }
-        public int Change { get; }
-        public Elements Type { get; }
-        public string Name { get; }
-        public string Description { get; }
+        public AttackMove(bool isSelfTarget, int change, string name, string description, Elements type) : base(isSelfTarget, change, type, name, description) { }
 
-        public AttacKMove(bool isSelfTarget, int change, string name, string description, Elements type)
-        {
-            IsSelfTarget = isSelfTarget;
-            Change = change;
-            Type = type;
-            Name = name;
-            Description = description;
-        }
-
-        public void Use(Pokemon target)
+        public override void Use(Pokemon target)
         {
             target.UpdateAttack(Change);
         }
