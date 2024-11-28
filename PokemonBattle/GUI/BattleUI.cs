@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using PokemonBattle.GUI;
 using PokemonBattle.GUI.TextBoxes;
+using PokemonBattle.Enums;
 
 namespace PokemonBattle;
 /// <summary>
@@ -11,11 +12,11 @@ public class BattleUI
     /// <summary>
     /// The width of one item in the UI
     /// </summary>
-    private const int width = 28;
+    private const int width = (int)Sizes.itemWidth;
     /// <summary>
     /// The height of on item in the UI
     /// </summary>
-    private const int height = 4;
+    private const int height = (int)Sizes.itemHeight;
     
     /// <summary>
     /// Generates a message that says what move a Pokemon did 
@@ -131,7 +132,7 @@ public class BattleUI
                     selected[0]++;
                     selected[0] = (selected[0] > 1) ? 1 : selected[0];
                     break;
-                case 5:
+                case 5: // enter
                     doneChoice = true;
                     break;
             }

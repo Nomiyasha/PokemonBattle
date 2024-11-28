@@ -7,7 +7,7 @@ public class MessageBox : TextBox
         => new Symbol(BorderChar, ConsoleColor.DarkGray);
     
     protected override Symbol BorderSelected 
-        => new Symbol(BorderChar, ConsoleColor.DarkGray); 
+        => new Symbol(BorderChar, ConsoleColor.White); 
     public MessageBox(int width, int height, string content, Position position)
         :base(width, height, "", content, position) {}
     
@@ -26,9 +26,9 @@ public class MessageBox : TextBox
 
         for (int i = 0; i < text.Length; i++)
         {
-            int startIndex = i * (Width-2);
+            int startIndex = i * (Width-4);
 
-            int substringLength = Math.Min((Width-2), Description.Length - startIndex);
+            int substringLength = Math.Min((Width-4), Description.Length - startIndex);
 
             text[i] = Description.Substring(startIndex, substringLength);
         }
@@ -50,11 +50,14 @@ public class MessageBox : TextBox
                 {
                     Content[i, j] = (isSelected) ? BorderSelected : BorderUnselected;
                 }
-                else
+                else if (j == Width - 2 || j == 1)
+                {
+                    Content[i, j] = new Symbol(' ', color);
+                }else
                 {
                     try
                     {
-                        Content[i, j] = new Symbol(text[i-1][j-1], color);
+                        Content[i, j] = new Symbol(text[i-1][j-2], color);
                     }
                     catch
                     {
