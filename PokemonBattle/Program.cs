@@ -17,8 +17,8 @@ class Program
             factory.Create("growl"),
         ];
         
-        Pokemon p = new Pokemon("Charmander", new HealthStat(50), moves.ToList(), Elements.Fire);
-        Pokemon enemy = new Pokemon("Squirtle", new HealthStat(50), moves.ToList(), Elements.Grass);
+        Pokemon p = new Pokemon("Charmander", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Fire);
+        Pokemon enemy = new Pokemon("Squirtle", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Grass);
 
         Battle battle = new Battle(p,enemy);
     }
