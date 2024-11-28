@@ -10,6 +10,7 @@ class Program
     {
         Console.CursorVisible = false;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
+
         Console.Title = "Pokemon Battle";
 
         GameLogic gameLogic = new GameLogic();

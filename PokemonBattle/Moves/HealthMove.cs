@@ -17,22 +17,23 @@ namespace PokemonBattle.Moves
             }
             else
             {
-                target.UpdateHealth(CalculateElementEffectiveness(Change, target.Type, user.Attack.CurrentStat, target.Defence.CurrentStat));
+                target.UpdateHealth(CalculateElementEffectiveness(Change, target.Type, user.Attack.CurrentStat, target.Defence.CurrentStat, user.Level.CurrentLevel));
             }
         }
 
         // Recalculates the damage if type of move is effective or weak against target
-        private int CalculateElementEffectiveness(int change, Elements type, int attack, int defence)
+        private int CalculateElementEffectiveness(int change, Elements type, int attack, int defence, int level)
         {
+            double modifier = 1;
             if (ElementEffectiveness.Effectiveness.ContainsKey(Type) && ElementEffectiveness.Effectiveness[Type] == type)
             {
-                return (int)Math.Round(((attack / defence) * change * 2.0), 0);
+                modifier = 1.5;
             }
             else if (ElementEffectiveness.Weakness.ContainsKey(Type) && ElementEffectiveness.Weakness[Type] == type)
             {
-                return (int)Math.Round(((attack / defence) * change * 0.5), 0); 
+                modifier = 0.5;
             }
-            else return Change;
+            return Math.Min(-1, (int)Math.Floor(((2 * level / 5.0 + 2) * change * (attack / defence)) / 50 + 2 * modifier));
         }
     }
 }

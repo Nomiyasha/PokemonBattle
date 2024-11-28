@@ -4,15 +4,24 @@ namespace PokemonBattle
 {
     public class AttackDefenceStat : IStat
     {
-        public int DefaultStat { get; private set; }
+        public int DefaultStat { get; }
+        public Level Level { get; }
+        public int CalculatedStat
+        {
+            get
+            {
+                return (int)((2 * DefaultStat * (Level.CurrentLevel / 100)) + 5);
+            }
+        }
         public int CurrentStat { get; private set; }
 
         // Counter to keep track of stat changes
         private int CurrentModifierStage { get; set; } = 0;
-        public AttackDefenceStat(int stat)
+        public AttackDefenceStat(int stat, Level level)
         {
             DefaultStat = stat;
-            CurrentStat = stat;
+            Level = level;
+            CurrentStat = CalculatedStat;
         }
 
         // Calculates the change that shall be applied on stat, based on current modifier stage
@@ -28,22 +37,22 @@ namespace PokemonBattle
             
             if (CurrentModifierStage > 0)
             {
-                CurrentStat = DefaultStat * (1 + (CurrentModifierStage / 2));
+                CurrentStat = CalculatedStat * (1 + (CurrentModifierStage / 2));
             } 
             else if (CurrentModifierStage < 0)
             {
-                CurrentStat = DefaultStat * (2 / (2 - CurrentModifierStage));
+                CurrentStat = CalculatedStat * (2 / (2 - CurrentModifierStage));
             }
             else
             {
-                CurrentStat = DefaultStat;
+                CurrentStat = CalculatedStat;
             }
         }
 
         // Reset stat value and modifier to default
         public void ResetStat()
         {
-            CurrentStat = DefaultStat;
+            CurrentStat = CalculatedStat;
             CurrentModifierStage = 0;
         }
     }
