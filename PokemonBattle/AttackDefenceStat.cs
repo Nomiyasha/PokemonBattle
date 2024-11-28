@@ -42,6 +42,7 @@ namespace PokemonBattle
             else if (CurrentModifierStage < 0)
             {
                 CurrentStat = CalculatedStat * (2 / (2 - CurrentModifierStage));
+                if (CurrentStat < 1) CurrentStat = 1;
             }
             else
             {
