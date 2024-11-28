@@ -1,5 +1,6 @@
 using PokemonBattle.GUI;
 using PokemonBattle.Enums;
+using System.Numerics;
 namespace PokemonBattle;
 
 public class GameLogic
@@ -34,8 +35,9 @@ public class GameLogic
             factory.Create("tailwhip"),
             factory.Create("growl"),
         ];
-        
-        PlayerPokemon = new Pokemon("Charmander", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Fire);
+
+        Level l5 = new Level(5);
+        PlayerPokemon = new Pokemon("Charmander", new HealthStat(50, l5), l5, new AttackDefenceStat(77, l5), new AttackDefenceStat(77, l5), moves.ToList(), Elements.Fire);
 
         
         
@@ -76,6 +78,7 @@ public class GameLogic
 
     private void BattleLoop(Pokemon player)
     {
+        player.ResetStats();
         Battle battle = new Battle(player, GenerateRandomPokemon());
         switch (battle.DoBattle())
         {
@@ -86,6 +89,7 @@ public class GameLogic
                 switch (VictoryMenu.DisplayMenu())
                 {
                     case 0: // Play again!
+
                         BattleLoop(player);
                         break;
                     case 1: // Return To Main Menu
@@ -104,7 +108,8 @@ public class GameLogic
             factory.Create("tailwhip"),
             factory.Create("growl"),
         ];
-        return new Pokemon("Squirtle", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Grass);
+        Level l5 = new Level(5);
+        return new Pokemon("Squirtle", new HealthStat(50, l5), l5, new AttackDefenceStat(77, l5), new AttackDefenceStat(77, l5), moves.ToList(), Elements.Grass);
     }
     private Pokemon ChoosePokemon()
     {

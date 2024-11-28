@@ -33,6 +33,7 @@ namespace PokemonBattle.Moves
             {
                 modifier = 0.5;
             }
+
             return Math.Min(-1, (int)Math.Floor(((2 * level / 5.0 + 2) * change * (attack / defence)) / 50 + 2 * modifier));
         }
     }

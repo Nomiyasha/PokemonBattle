@@ -72,4 +72,11 @@ public class Pokemon
     {
         Defence.UpdateStat(change);
     }
+
+    public void ResetStats()
+    {
+        Health.ResetStat();
+        Attack.ResetStat();
+        Defence.ResetStat();
+    }
 }

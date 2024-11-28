@@ -4,12 +4,11 @@ public class Battle
 {
     private Pokemon Player { get; }
     private Pokemon Enemy { get; }
+    private readonly Random random = new Random();
     public Battle(Pokemon player, Pokemon enemy)
     {
         Player = player;
         Enemy = enemy;
-
-        DoBattle();
     }
 
     public int DoBattle()
@@ -36,7 +35,7 @@ public class Battle
             else
             {
                 UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
-                enemymove = 0; // random?
+                enemymove = random.Next(0, Enemy.moves.Count - 1);
                 Enemy.UseMove(Player, enemymove);
             }
 
