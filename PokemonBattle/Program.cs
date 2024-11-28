@@ -1,4 +1,5 @@
 ﻿using PokemonBattle.Enums;
+using PokemonBattle.GUI;
 
 namespace PokemonBattle;
 
@@ -9,17 +10,9 @@ class Program
     {
         Console.CursorVisible = false;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        MoveFactory factory = new MoveFactory();
-        IMove[] moves = [
-            factory.Create("ember"),
-            factory.Create("scratch"),
-            factory.Create("tailwhip"),
-            factory.Create("growl"),
-        ];
-        
-        Pokemon p = new Pokemon("Charmander", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Fire);
-        Pokemon enemy = new Pokemon("Squirtle", new HealthStat(50), new AttackDefenceStat(77), new AttackDefenceStat(77), moves.ToList(), Elements.Grass);
+        Console.Title = "Pokemon Battle";
 
-        Battle battle = new Battle(p,enemy);
+        GameLogic gameLogic = new GameLogic();
+        gameLogic.Run();
     }
 }

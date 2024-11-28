@@ -12,7 +12,7 @@ public class Battle
         DoBattle();
     }
 
-    public void DoBattle()
+    public int DoBattle()
     {
         int playermove = -1;
         int enemymove = -1;
@@ -43,6 +43,6 @@ public class Battle
             turnIndex++;
         }
 
-        Console.WriteLine("Battle over");
+        return (Player.IsAlive) ? 1 : 0;
     }
 }
