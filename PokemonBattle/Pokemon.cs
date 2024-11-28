@@ -14,10 +14,12 @@ public class Pokemon
 
     public List<IMove> moves = new List<IMove>();
 
-    public Pokemon(string name, HealthStat health, List<IMove> moves, Elements type)
+    public Pokemon(string name, HealthStat health, AttackDefenceStat attack, AttackDefenceStat defence, List<IMove> moves, Elements type)
     {
         Name = name;
         Health = health;
+        Attack = attack;
+        Defence = defence;
         this.moves = moves;
         Type = type;
     }
