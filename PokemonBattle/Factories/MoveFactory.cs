@@ -18,12 +18,12 @@ public class MoveFactory
         {
             "scratch" => new HealthMove(false, -40, "Scratch", "Scratches with sharp claws.", Elements.Normal), 
             "tackle" => new HealthMove(false, -40, "Tackle", "A full-body charge attack.", Elements.Normal),
-            "vinewhip" => new HealthMove(false, -40, "Vine Whip", "Whips the foe with slender vines.", Elements.Grass),
-            "ember" => new HealthMove(false, -40, "Ember", "An attack that may inflict a burn.", Elements.Fire),
+            "vinewhip" => new HealthMove(false, -40, "Vine Whip", "Whips the foe with vines.", Elements.Grass),
+            "ember" => new HealthMove(false, -40, "Ember", "A weak fire attack.", Elements.Fire),
             "watergun" => new HealthMove(false, -40, "Watergun", "Squirts water to attack.", Elements.Water),
             "growl" => new AttackMove(false, -1, "Growl", "Reduces the foe's Attack.", Elements.Normal),
-            "growth" => new AttackMove(true, 1, "Growth", "The user's body grows all at once, raising the Attack stat.", Elements.Normal),
-            "withdraw" => new DefenceMove(false, 1, "Withdraw", "Withdraws the body into its hard shell to raise Defense..", Elements.Water),
+            "growth" => new AttackMove(true, 1, "Growth", "The user's body grows.", Elements.Normal),
+            "withdraw" => new DefenceMove(false, 1, "Withdraw", "Withdraws the body into shell.", Elements.Water),
             "tailwhip" => new DefenceMove(true, -1, "Tail Whip", "Lowers the foe's Defense.", Elements.Normal),
             _ => throw new ArgumentException("Invalid moveName")
         };
