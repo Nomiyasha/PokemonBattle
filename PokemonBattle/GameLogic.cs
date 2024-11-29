@@ -117,7 +117,7 @@ public class GameLogic
                 chosenPokemon = PokemonFactory.Create("Bulbasaur", 5);
                 break;
         }
-        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
+        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
             selectPokemonMenuItems);
         return chosenPokemon;
     }
