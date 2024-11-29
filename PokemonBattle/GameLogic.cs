@@ -41,7 +41,7 @@ public class GameLogic
         SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
             selectPokemonMenuItems);
 
-        round = 0;
+        round = 1;
 
     }
 
@@ -80,7 +80,7 @@ public class GameLogic
         switch (battle.DoBattle())
         {
             case 0: // Player lost
-                round = 0;
+                round = 1;
                 EndMenu.DisplayMenu();
                 break;
             case 1: // Player won
