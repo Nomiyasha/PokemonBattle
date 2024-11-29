@@ -119,6 +119,7 @@ public class GameLogic
         }
         SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
             selectPokemonMenuItems);
+        round = 1;
         return chosenPokemon;
     }
 
