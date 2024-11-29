@@ -29,11 +29,11 @@ public class GameLogic
     private PokemonFactory PokemonFactory { get; set; }
 
     private int round;
-    
+    private const int startLevel = 5;
     public GameLogic()
     {
         PokemonFactory = new PokemonFactory();
-        PlayerPokemon = PokemonFactory.Create("Charmander", 5); // Default pokemon
+        PlayerPokemon = PokemonFactory.Create("Charmander", startLevel); // Default pokemon
         
         StartMenu = new MenuUI(startMenuTitle, startMenuItems);
         EndMenu = new MenuUI(endMenuTitle, endMenuItems);
@@ -108,13 +108,13 @@ public class GameLogic
         switch (SelectPokemonMenu.DisplayMenu())
         {
             case 0: // Charmander
-                chosenPokemon = PokemonFactory.Create("Charmander", 5);
+                chosenPokemon = PokemonFactory.Create("Charmander", startLevel);
                 break;
             case 1: // Squirtle
-                chosenPokemon = PokemonFactory.Create("Squirtle", 5);
+                chosenPokemon = PokemonFactory.Create("Squirtle", startLevel);
                 break;
             case 2: // Bulbasaur
-                chosenPokemon = PokemonFactory.Create("Bulbasaur", 5);
+                chosenPokemon = PokemonFactory.Create("Bulbasaur", startLevel);
                 break;
         }
         SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
