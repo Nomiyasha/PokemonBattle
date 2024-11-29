@@ -16,7 +16,8 @@ public class PokemonBox : TextBox
     /// <param name="pokemon">Pokemon to display information about, uses name and HP</param>
     /// <param name="position"></param>
     public PokemonBox(int width, int height, Pokemon pokemon, Position position)
-        : base(width, height, pokemon.Name, pokemon.Health.CurrentStat.ToString(), position) { }
+        : base(width, height, $"{pokemon.Name} Lv. {pokemon.Level.CurrentLevel}", 
+            pokemon.Health.CurrentStat.ToString(), position) { }
     
     
     /// <summary>

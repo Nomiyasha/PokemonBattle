@@ -16,36 +16,33 @@ public class GameLogic
     private const string victoryMenuTitle = "You won! Play again?";
     private readonly string[] victoryMenuItems = { "Play again!", "Return to Start Menu" };
     
-    private const string selectPokemonMenuTitle = "Select a Pokemon";
+    private const string selectPokemonMenuTitle = "Select a Pokemon!";
     private readonly string[] selectPokemonMenuItems = { "Charmander", "Squirtle", "Bulbasaur" };
 
     private MenuUI StartMenu { get; }
     private MenuUI EndMenu { get; }
     private MenuUI VictoryMenu{ get; }
-    private MenuUI SelectPokemonMenu{ get; }
+    private MenuUI SelectPokemonMenu{ get; set; }
     
     private Pokemon PlayerPokemon { get; set; }
+    
+    private PokemonFactory PokemonFactory { get; set; }
 
+    private int round;
+    
     public GameLogic()
     {
-        MoveFactory factory = new MoveFactory();
-        IMove[] moves = [
-            factory.Create("ember"),
-            factory.Create("scratch"),
-            factory.Create("tailwhip"),
-            factory.Create("growl"),
-        ];
-
-        Level l5 = new Level(5);
-        PlayerPokemon = new Pokemon("Charmander", new HealthStat(50, l5), l5, new AttackDefenceStat(77, l5), new AttackDefenceStat(77, l5), moves.ToList(), Elements.Fire);
-
-        
+        PokemonFactory = new PokemonFactory();
+        PlayerPokemon = PokemonFactory.Create("Charmander", 5); // Default pokemon
         
         StartMenu = new MenuUI(startMenuTitle, startMenuItems);
         EndMenu = new MenuUI(endMenuTitle, endMenuItems);
         VictoryMenu = new MenuUI(victoryMenuTitle, victoryMenuItems);
-        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", selectPokemonMenuItems);
-        
+        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
+            selectPokemonMenuItems);
+
+        round = 0;
+
     }
 
     public void Run()
@@ -83,13 +80,14 @@ public class GameLogic
         switch (battle.DoBattle())
         {
             case 0: // Player lost
+                round = 0;
                 EndMenu.DisplayMenu();
                 break;
             case 1: // Player won
+                round++;
                 switch (VictoryMenu.DisplayMenu())
                 {
                     case 0: // Play again!
-
                         BattleLoop(player);
                         break;
                     case 1: // Return To Main Menu
@@ -101,32 +99,27 @@ public class GameLogic
     }
     private Pokemon GenerateRandomPokemon()
     {
-        MoveFactory factory = new MoveFactory();
-        IMove[] moves = [
-            factory.Create("ember"),
-            factory.Create("scratch"),
-            factory.Create("tailwhip"),
-            factory.Create("growl"),
-        ];
-        Level l5 = new Level(5);
-        return new Pokemon("Squirtle", new HealthStat(50, l5), l5, new AttackDefenceStat(77, l5), new AttackDefenceStat(77, l5), moves.ToList(), Elements.Grass);
+        return PokemonFactory.Random(round); // Each round the enemy levels up.
     }
     private Pokemon ChoosePokemon()
     {
-        Pokemon Current = PlayerPokemon;
+        Pokemon chosenPokemon = PlayerPokemon;
+        
         switch (SelectPokemonMenu.DisplayMenu())
         {
-            case 1:
-                Current = PlayerPokemon;
+            case 0: // Charmander
+                chosenPokemon = PokemonFactory.Create("Charmander", 5);
                 break;
-            case 2:
-                Current = PlayerPokemon;
+            case 1: // Squirtle
+                chosenPokemon = PokemonFactory.Create("Squirtle", 5);
                 break;
-            case 3:
-                Current = PlayerPokemon;
+            case 2: // Bulbasaur
+                chosenPokemon = PokemonFactory.Create("Bulbasaur", 5);
                 break;
         }
-        return Current;
+        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
+            selectPokemonMenuItems);
+        return chosenPokemon;
     }
 
 

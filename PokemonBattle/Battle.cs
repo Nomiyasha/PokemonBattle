@@ -41,7 +41,15 @@ public class Battle
 
             turnIndex++;
         }
-
+        // Display one last time, else people won't know what hit them.
+        if (turnIndex == 0)
+        {
+            UI.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
+        }
+        else
+        {
+            UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
+        }
         return (Player.IsAlive) ? 1 : 0;
     }
 }
