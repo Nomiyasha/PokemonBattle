@@ -2,8 +2,8 @@
 
 public enum Sizes
 {
-        itemWidth = 32,
-        itemHeight = 4,
-        fullWidth = 32*2,
-        fullHeight = 4*5
+        ItemWidth = 32,
+        ItemHeight = 4,
+        FullWidth = 32*2,
+        FullHeight = 4*5
 }

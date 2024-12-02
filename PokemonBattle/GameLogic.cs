@@ -1,53 +1,55 @@
 using PokemonBattle.GUI;
 using PokemonBattle.Enums;
 using System.Numerics;
+using PokemonBattle.Factories;
+
 namespace PokemonBattle;
 
 public class GameLogic
 {
 
-    private const string startMenuTitle =
+    private const string StartMenuTitle =
         "Welcome to Pokemon Battle! Use the arrow keys to navigate and press [ENTER] to select.";
-    private readonly string[] startMenuItems = {"Start Game", "Change Pokemon", "Exit Game"};
+    private readonly string[] _startMenuItems = {"Start Game", "Change Pokemon", "Exit Game"};
     
-    private const string endMenuTitle = "Game Over! You lost...";
-    private readonly string[] endMenuItems = {"Return to Start Menu"};
+    private const string EndMenuTitle = "Game Over! You lost...";
+    private readonly string[] _endMenuItems = {"Return to Start Menu"};
     
-    private const string victoryMenuTitle = "You won! Play again?";
-    private readonly string[] victoryMenuItems = { "Play again!", "Return to Start Menu" };
+    private const string VictoryMenuTitle = "You won! Play again?";
+    private readonly string[] _victoryMenuItems = { "Play again!", "Return to Start Menu" };
     
-    private const string selectPokemonMenuTitle = "Select a Pokemon!";
-    private readonly string[] selectPokemonMenuItems = { "Charmander", "Squirtle", "Bulbasaur" };
+    private const string SelectPokemonMenuTitle = "Select a Pokemon!";
+    private readonly string[] _selectPokemonMenuItems = { "Charmander", "Squirtle", "Bulbasaur" };
 
-    private MenuUI StartMenu { get; }
-    private MenuUI EndMenu { get; }
-    private MenuUI VictoryMenu{ get; }
-    private MenuUI SelectPokemonMenu{ get; set; }
+    private MenuUi StartMenu { get; }
+    private MenuUi EndMenu { get; }
+    private MenuUi VictoryMenu{ get; }
+    private MenuUi SelectPokemonMenu{ get; set; }
     
     private Pokemon PlayerPokemon { get; set; }
     
     private PokemonFactory PokemonFactory { get; set; }
 
-    private int round;
-    private const int startLevel = 5;
+    private int _round;
+    private const int StartLevel = 5;
     public GameLogic()
     {
         PokemonFactory = new PokemonFactory();
-        PlayerPokemon = PokemonFactory.Create("Charmander", startLevel); // Default pokemon
+        PlayerPokemon = PokemonFactory.Create("Charmander", StartLevel); // Default pokemon
         
-        StartMenu = new MenuUI(startMenuTitle, startMenuItems);
-        EndMenu = new MenuUI(endMenuTitle, endMenuItems);
-        VictoryMenu = new MenuUI(victoryMenuTitle, victoryMenuItems);
-        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
-            selectPokemonMenuItems);
+        StartMenu = new MenuUi(StartMenuTitle, _startMenuItems);
+        EndMenu = new MenuUi(EndMenuTitle, _endMenuItems);
+        VictoryMenu = new MenuUi(VictoryMenuTitle, _victoryMenuItems);
+        SelectPokemonMenu = new MenuUi(SelectPokemonMenuTitle + $" Current Pokemon: {PlayerPokemon.Name}", 
+            _selectPokemonMenuItems);
 
-        round = 1;
+        _round = 1;
 
     }
 
     public void Run()
     {
-        TitleScreenUI titleScreen = new TitleScreenUI();
+        TitleScreenUi titleScreen = new TitleScreenUi();
         titleScreen.Display();
         
         bool isRunning = true;
@@ -80,18 +82,18 @@ public class GameLogic
         switch (battle.DoBattle())
         {
             case 0: // Player lost
-                round = 1;
+                _round = 1;
                 EndMenu.DisplayMenu();
                 break;
             case 1: // Player won
-                round++;
+                _round++;
                 switch (VictoryMenu.DisplayMenu())
                 {
                     case 0: // Play again!
                         BattleLoop(player);
                         break;
                     case 1: // Return To Main Menu
-                        round = 1;
+                        _round = 1;
                         break;
                 }
                 break;
@@ -99,7 +101,7 @@ public class GameLogic
     }
     private Pokemon GenerateRandomPokemon()
     {
-        return PokemonFactory.Random(round); // Each round the enemy levels up.
+        return PokemonFactory.Random(_round); // Each round the enemy levels up.
     }
     private Pokemon ChoosePokemon()
     {
@@ -108,17 +110,17 @@ public class GameLogic
         switch (SelectPokemonMenu.DisplayMenu())
         {
             case 0: // Charmander
-                chosenPokemon = PokemonFactory.Create("Charmander", startLevel);
+                chosenPokemon = PokemonFactory.Create("Charmander", StartLevel);
                 break;
             case 1: // Squirtle
-                chosenPokemon = PokemonFactory.Create("Squirtle", startLevel);
+                chosenPokemon = PokemonFactory.Create("Squirtle", StartLevel);
                 break;
             case 2: // Bulbasaur
-                chosenPokemon = PokemonFactory.Create("Bulbasaur", startLevel);
+                chosenPokemon = PokemonFactory.Create("Bulbasaur", StartLevel);
                 break;
         }
-        SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
-            selectPokemonMenuItems);
+        SelectPokemonMenu = new MenuUi(SelectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
+            _selectPokemonMenuItems);
         
         return chosenPokemon;
     }

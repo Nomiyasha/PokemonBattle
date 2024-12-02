@@ -3,7 +3,7 @@
     public class Level
     {
         public int CurrentLevel { get; private set; }
-        public int Xp { get; private set; }
+        private int Xp { get; set; }
 
         public Level(int level = 1)
         {

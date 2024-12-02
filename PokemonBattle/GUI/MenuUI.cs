@@ -2,21 +2,21 @@
 using PokemonBattle.Enums;
 using PokemonBattle.GUI.TextBoxes;
 
-public class MenuUI
+public class MenuUi
 {
     /// <summary>
     /// The width of one item in the UI
     /// </summary>
-    private const int width = (int)Sizes.itemWidth;
+    private const int Width = (int)Sizes.ItemWidth;
     /// <summary>
     /// The height of on item in the UI
     /// </summary>
-    private const int height = (int)Sizes.itemHeight;
+    private const int Height = (int)Sizes.ItemHeight;
 
     private string TitleContent { get; }
     private string[] MenuItems { get; }
 
-    public MenuUI(string titleContent, string[] menuItems)
+    public MenuUi(string titleContent, string[] menuItems)
     {
         TitleContent = titleContent;
         MenuItems = menuItems;
@@ -31,16 +31,16 @@ public class MenuUI
         Console.Clear();
         int cursorPosLeft = Console.CursorLeft;
         int cursorPosTop = Console.CursorTop;
-        SymbolGrid grid = new SymbolGrid((int)Sizes.fullHeight, (int)Sizes.fullWidth);
+        SymbolGrid grid = new SymbolGrid((int)Sizes.FullHeight, (int)Sizes.FullWidth);
 
         
-        MessageBox title = new MessageBox((int)Sizes.fullWidth, height, TitleContent, new Position(0,0));
+        MessageBox title = new MessageBox((int)Sizes.FullWidth, Height, TitleContent, new Position(0,0));
         
         
         MessageBox[] menuBoxes = new MessageBox[MenuItems.Length];
         for (int i = 0; i < MenuItems.Length; i++)
         {
-            menuBoxes[i] = new MessageBox(width, height, MenuItems[i], new Position(width/2, height*(i+1)));
+            menuBoxes[i] = new MessageBox(Width, Height, MenuItems[i], new Position(Width/2, Height*(i+1)));
         }
         
         

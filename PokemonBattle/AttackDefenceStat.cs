@@ -16,6 +16,11 @@ namespace PokemonBattle
         public int CurrentStat { get; private set; }
 
         // Counter to keep track of stat changes
+        // KRAV 1
+        // 1: Inkapsling / Informationsgömning
+        // 2: Hur: Fältet är privat.
+        // 3: Motivering: Fältet används inte utanför klassen. Shorthanden för properties vi använder här har ett 
+        //    fält i bakgrunden.
         private int CurrentModifierStage { get; set; } = 0;
         public AttackDefenceStat(int stat, Level level)
         {

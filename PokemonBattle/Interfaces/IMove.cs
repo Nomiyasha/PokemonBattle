@@ -1,4 +1,4 @@
-namespace PokemonBattle;
+namespace PokemonBattle.Interfaces;
 
 public interface IMove
 {

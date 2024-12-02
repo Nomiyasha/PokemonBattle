@@ -3,12 +3,12 @@ namespace PokemonBattle;
 public class Input{
     enum Command
     {
-        up = (int)ConsoleKey.UpArrow,
-        down = (int)ConsoleKey.DownArrow,
-        left = (int)ConsoleKey.LeftArrow,
-        right = (int)ConsoleKey.RightArrow,
-        enter = (int)ConsoleKey.Enter,
-        esc = (int)ConsoleKey.Escape
+        Up = (int)ConsoleKey.UpArrow,
+        Down = (int)ConsoleKey.DownArrow,
+        Left = (int)ConsoleKey.LeftArrow,
+        Right = (int)ConsoleKey.RightArrow,
+        Enter = (int)ConsoleKey.Enter
+        
     }
 
     public static int GetInput(){
@@ -17,31 +17,26 @@ public class Input{
         while(!isCorrectInput){
             Command input = (Command)Console.ReadKey(true).Key;
             switch(input){
-                case Command.up:
+                case Command.Up:
                     choice = 1;
                     isCorrectInput = true;
                     break;
-                case Command.down:
+                case Command.Down:
                     choice = 2;
                     isCorrectInput = true;
                     break;
-                case Command.left:
+                case Command.Left:
                     choice = 3;
                     isCorrectInput = true;
                     break;
-                case Command.right:
+                case Command.Right:
                     choice = 4;
                     isCorrectInput = true;
                     break;
-                case Command.enter:
+                case Command.Enter:
                     choice = 5;
                     isCorrectInput = true;
                     break;
-                case Command.esc:
-                    choice = 6;
-                    isCorrectInput = true;
-                    break;
-
             }
         }
         return choice;

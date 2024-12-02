@@ -2,9 +2,9 @@
 /// <summary>
 /// Class for displaying the title screen
 /// </summary>
-public class TitleScreenUI
+public class TitleScreenUi
 {
-    private const string title = """
+    private const string Title = """
                                          ______ _____ _   __ ________  ________ _   _ 
                                          | ___ \  _  | | / /|  ___|  \/  |  _  | \ | |
                                          | |_/ / | | | |/ / | |__ | .  . | | | |  \| |
@@ -22,14 +22,14 @@ public class TitleScreenUI
                                                                                       
                                                                                       
                                          """;
-    private const string titleMessage = "\tPress [ENTER] to start";
+    private const string TitleMessage = "\tPress [ENTER] to start";
     /// <summary>
     /// Print the title to the console
     /// </summary>
     public void Display()
     {
-        Console.WriteLine(title);
-        Console.Write(titleMessage);
+        Console.WriteLine(Title);
+        Console.Write(TitleMessage);
         Console.ReadKey(true);
     }
 }

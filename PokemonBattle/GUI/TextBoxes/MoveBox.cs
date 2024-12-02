@@ -1,66 +1,60 @@
-﻿namespace PokemonBattle.GUI.TextBoxes;
+﻿using PokemonBattle.Interfaces;
+
+namespace PokemonBattle.GUI.TextBoxes;
 
 public class MoveBox : TextBox
 {
-    protected override Symbol BorderUnselected
-        => new Symbol(BorderChar, ConsoleColor.DarkGray);
-    
-    protected override Symbol BorderSelected 
-        => new Symbol(BorderChar, ConsoleColor.White);
     /// <summary>
-    /// Constructor
+    ///     Constructor
     /// </summary>
     /// <param name="width"></param>
     /// <param name="height"></param>
     /// <param name="move">What move to display information about</param>
     /// <param name="position"></param>
     public MoveBox(int width, int height, IMove move, Position position)
-        :base(width, height, move.Name, move.Description, position) {}
-    
+        : base(width, height, move.Name, move.Description, position)
+    { }
+
+    protected override Symbol BorderUnselected => new(BorderChar, ConsoleColor.DarkGray);
+
+    protected override Symbol BorderSelected => new(BorderChar);
+
     /// <summary>
-    /// Generates content to display
+    ///     Generates content to display
     /// </summary>
     /// <param name="isSelected">Changes both textcolor and bordercolor</param>
     protected override void GenerateContent(bool isSelected)
     {
-        ConsoleColor color = ConsoleColor.White;
+        var color = ConsoleColor.White;
         if (isSelected)
-        {
-            color = ConsoleColor.White;
-        }
+        {color = ConsoleColor.White;}
         else
+        {color = ConsoleColor.Gray;}
+
+        for (var i = 0; i < Height; i++)
         {
-            color = ConsoleColor.Gray;
-        }
-        
-        for (int i = 0; i < Height; i++)
-        {
-            for (int j = 0; j < Width; j++)
+            for (var j = 0; j < Width; j++)
             {
                 if (i == 0 || j == 0 || j == Width - 1 || i == Height - 1)
                 {
-                    Content[i, j] = (isSelected) ? BorderSelected : BorderUnselected;
+                    Content[i, j] = isSelected ? BorderSelected : BorderUnselected;
                 }
                 else if (i == 1)
                 {
                     try
                     {
-                        Content[i, j] = new Symbol(Title[j-1], color);
+                        Content[i, j] = new Symbol(Title[j - 1], color);
                     }
                     catch
                     {
                         Content[i, j] = new Symbol(' ', color);
-                        
                     }
-                        
                 }
                 else
                 {
-                    
-                    
                     try
                     {
-                        Content[i, j] = new Symbol(Description[j-1], color);
+                        Content[i, j] = new Symbol(Description[j - 1], color);
                     }
                     catch
                     {
@@ -69,7 +63,5 @@ public class MoveBox : TextBox
                 }
             }
         }
-        
     }
-    
 }

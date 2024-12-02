@@ -1,7 +1,8 @@
 ﻿using PokemonBattle.Enums;
+using PokemonBattle.Interfaces;
 using PokemonBattle.Moves;
 
-namespace PokemonBattle;
+namespace PokemonBattle.Factories;
 
 public class MoveFactory
 {
