@@ -91,7 +91,7 @@ public class GameLogic
                         BattleLoop(player);
                         break;
                     case 1: // Return To Main Menu
-                        //Do nothing
+                        round = 1;
                         break;
                 }
                 break;
@@ -119,7 +119,7 @@ public class GameLogic
         }
         SelectPokemonMenu = new MenuUI(selectPokemonMenuTitle + $" Current Pokemon: {chosenPokemon.Name}", 
             selectPokemonMenuItems);
-        round = 1;
+        
         return chosenPokemon;
     }
 
