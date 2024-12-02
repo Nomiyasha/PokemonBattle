@@ -6,8 +6,8 @@ namespace PokemonBattle;
 public class Pokemon
 {
     public string Name { get; }
-    public HealthStat Health { get; }
     public Level Level { get; }
+    public HealthStat Health { get; }
     public bool IsAlive => Health.CurrentStat > 0;
     public AttackDefenceStat Attack { get; }
     public AttackDefenceStat Defence { get; }
@@ -15,13 +15,13 @@ public class Pokemon
 
     public List<IMove> moves = new List<IMove>();
 
-    public Pokemon(string name, HealthStat health, Level level, AttackDefenceStat attack, AttackDefenceStat defence, List<IMove> moves, Elements type)
+    public Pokemon(string name, int health, int level, int attack, int defence, List<IMove> moves, Elements type)
     {
         Name = name;
-        Health = health;
-        Level = level;
-        Attack = attack;
-        Defence = defence;
+        Level = new Level(level);
+        Health = new HealthStat(health, Level);
+        Attack = new AttackDefenceStat(attack, Level);
+        Defence = new AttackDefenceStat(defence, Level);
         this.moves = moves;
         Type = type;
     }
