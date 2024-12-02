@@ -37,11 +37,11 @@ namespace PokemonBattle
             
             if (CurrentModifierStage > 0)
             {
-                CurrentStat = CalculatedStat * (1 + (CurrentModifierStage / 2));
+                CurrentStat = (int)Math.Round(CalculatedStat * (1.0 + (CurrentModifierStage / 2.0)), 0);
             } 
             else if (CurrentModifierStage < 0)
             {
-                CurrentStat = CalculatedStat * (2 / (2 - CurrentModifierStage));
+                CurrentStat = (int)Math.Round(CalculatedStat * (2.0 / (2.0 - CurrentModifierStage)), 0);
                 if (CurrentStat < 1) CurrentStat = 1;
             }
             else
