@@ -1,22 +1,21 @@
-using System.Runtime.CompilerServices;
-using PokemonBattle.GUI;
-using PokemonBattle.GUI.TextBoxes;
 using PokemonBattle.Enums;
+using PokemonBattle.GUI.TextBoxes;
+using PokemonBattle.Interfaces;
 
-namespace PokemonBattle;
+namespace PokemonBattle.GUI;
 /// <summary>
 /// Class for handling input and output during a pokemon battle
 /// </summary>
-public class BattleUI
+public class BattleUi
 {
     /// <summary>
     /// The width of one item in the UI
     /// </summary>
-    private const int width = (int)Sizes.itemWidth;
+    private const int Width = (int)Sizes.ItemWidth;
     /// <summary>
     /// The height of on item in the UI
     /// </summary>
-    private const int height = (int)Sizes.itemHeight;
+    private const int Height = (int)Sizes.ItemHeight;
     
     /// <summary>
     /// Generates a message that says what move a Pokemon did 
@@ -47,11 +46,11 @@ public class BattleUI
         //Clear the console
         Console.Clear();
         //Initialize grid
-        SymbolGrid grid = new SymbolGrid(height*3,width*2);
+        SymbolGrid grid = new SymbolGrid(Height*3,Width*2);
         string messageText = "";
         //Pokemon textboxes
-        PokemonBox playerBox = new PokemonBox(width, (int)(height*2), player, new Position(0,0));
-        PokemonBox enemyBox = new PokemonBox(width, (int)(height*2), enemy, new Position(width,0));
+        PokemonBox playerBox = new PokemonBox(Width, (int)(Height*2), player, new Position(0,0));
+        PokemonBox enemyBox = new PokemonBox(Width, (int)(Height*2), enemy, new Position(Width,0));
         
         //We display the instruction the first turn
         if(moveIndex == -1)
@@ -59,13 +58,13 @@ public class BattleUI
         else{
             //On the player's turn we display what the enemy did, and vice versa
             if (turn == 0)
-            { messageText = GenerateMessage(enemy, enemy.moves[moveIndex]); }
+            { messageText = GenerateMessage(enemy, enemy.Moves[moveIndex]); }
             else
-            { messageText = GenerateMessage(player, player.moves[moveIndex]); }
+            { messageText = GenerateMessage(player, player.Moves[moveIndex]); }
             
         }
         //Message textboxe
-        MessageBox message = new MessageBox(width*2,height, messageText, new Position(0,height*2));
+        MessageBox message = new MessageBox(Width*2,Height, messageText, new Position(0,Height*2));
         
         //Draw the textboxes to the grid
         playerBox.Draw(grid, false);
@@ -91,14 +90,14 @@ public class BattleUI
         int index = 0;
         bool doneChoice = false;
         //Initialize grid
-        SymbolGrid menu = new SymbolGrid(height*2, width*2);
+        SymbolGrid menu = new SymbolGrid(Height*2, Width*2);
         //The list of textboxes
         MoveBox[] menuItems =
         {
-           new MoveBox(width, height, moves[0],new Position(0,0)),
-           new MoveBox(width, height, moves[1],new Position(width,0)),
-           new MoveBox(width, height, moves[2],new Position(0,height)),
-           new MoveBox(width, height, moves[3],new Position(width,height)),
+           new MoveBox(Width, Height, moves[0],new Position(0,0)),
+           new MoveBox(Width, Height, moves[1],new Position(Width,0)),
+           new MoveBox(Width, Height, moves[2],new Position(0,Height)),
+           new MoveBox(Width, Height, moves[3],new Position(Width,Height)),
         };
         //Drawing to the console and allowing interaction with the menu
         while(!doneChoice){

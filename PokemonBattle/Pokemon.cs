@@ -1,4 +1,5 @@
 using PokemonBattle.Enums;
+using PokemonBattle.Interfaces;
 using PokemonBattle.Moves;
 
 namespace PokemonBattle;
@@ -7,14 +8,28 @@ public class Pokemon
 {
     public string Name { get; }
     public Level Level { get; }
+    // KRAV 3
+    // 1: Computed Properties
+    // 2: Hur: Vi använder Computed Properties genom att ha en bool som räknas ut via andra medlemmar av klassen.
+    // 3: Motivering: Det är rimligt att räkna på om Pokemonen lever eller ej varje gång man vill åt dess IsAlive status.
     public HealthStat Health { get; }
     public bool IsAlive => Health.CurrentStat > 0;
     public AttackDefenceStat Attack { get; }
     public AttackDefenceStat Defence { get; }
     public Elements Type { get; }
+    // KRAV 4
+    // 1: Objektkomposition
+    // 2: Hur: En pokemon har en lista med moves(IMoves) den kan utföra. Se funktionen UseMove() vid rad 43 för del 2 av kravet.
+    // 3: Motivering: Genom att ha en separat klass med moves så blir koden mer uppdelad i ansvarsområden samt lättare
+    //    att hantera.
+    public readonly List<IMove> Moves;
 
-    public List<IMove> moves = new List<IMove>();
-
+    // KRAV 5
+    // 1: Beroendeinjektion
+    // 2: Hur: En lista med moves (IMoves) injiceras i Pokemon klassen genom konstruktorn, m.a.o. Konstruktorinjektion. 
+    //    Se funktionen UseMove() vid rad 43 för del 2 av kravet.
+    // 3: Motivering: Genom att ha en separat klass med moves så blir koden mer uppdelad i ansvarsområden samt lättare
+    //    att hantera. Samma motivering som Krav 4, men vi kraven blir väldigt sammanlänkade i denna klass.
     public Pokemon(string name, int health, int level, int attack, int defence, List<IMove> moves, Elements type)
     {
         Name = name;
@@ -22,24 +37,13 @@ public class Pokemon
         Health = new HealthStat(health, Level);
         Attack = new AttackDefenceStat(attack, Level);
         Defence = new AttackDefenceStat(defence, Level);
-        this.moves = moves;
+        Moves = moves;
         Type = type;
-    }
-
-    public void UpdateMoves(IMove move)
-    {
-        if (moves.Count < 4)
-        {
-            moves.Add(move);
-        } else
-        {
-            // Implement input logic to replace another move, or cancel replacements.
-        }
     }
 
     public void UseMove(Pokemon target, int moveIndex)
     {
-        IMove move = moves[moveIndex];
+        IMove move = Moves[moveIndex];
         if (move.IsSelfTarget)
         {
             move.Use(this);

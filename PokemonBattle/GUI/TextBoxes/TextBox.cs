@@ -1,4 +1,4 @@
-﻿namespace PokemonBattle.GUI;
+﻿namespace PokemonBattle.GUI.TextBoxes;
 
 /// <summary>
 /// A text box to be displayed on a SymbolGrid.
@@ -9,20 +9,20 @@ public abstract class TextBox
     /// <summary>
     /// Height of the textbox
     /// </summary>
-    public int Height { get; }
+    protected int Height { get; }
     /// <summary>
     /// Width of the textbox
     /// </summary>
-    public int Width { get; }
+    protected int Width { get; }
     /// <summary>
     /// Position of the top left corner of the textbox
     /// </summary>
-    public Position Position { get; }
+    private Position Position { get; }
     
     /// <summary>
     /// The content of the textbox
     /// </summary>
-    protected Symbol[,] Content;
+    protected readonly Symbol[,] Content;
 
     /// <summary>
     /// The character to use for the border
@@ -57,7 +57,7 @@ public abstract class TextBox
     /// <param name="title">Title of the textbox</param>
     /// <param name="description">Content of the textbox</param>
     /// <param name="position">Position of the textbox</param>
-    public TextBox(int width, int height, string title, string description, Position position)
+    protected TextBox(int width, int height, string title, string description, Position position)
     {
         Width = width;
         Height = height;
@@ -83,6 +83,7 @@ public abstract class TextBox
             }
         }
     }
+
     /// <summary>
     /// Generating content for the textbox
     /// </summary>

@@ -1,6 +1,7 @@
 ﻿using PokemonBattle.Enums;
+using PokemonBattle.Interfaces;
 
-namespace PokemonBattle;
+namespace PokemonBattle.Factories;
 
 public class PokemonFactory
 {

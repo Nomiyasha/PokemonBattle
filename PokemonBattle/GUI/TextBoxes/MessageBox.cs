@@ -7,7 +7,7 @@ public class MessageBox : TextBox
         => new Symbol(BorderChar, ConsoleColor.DarkGray);
     
     protected override Symbol BorderSelected 
-        => new Symbol(BorderChar, ConsoleColor.White); 
+        => new Symbol(BorderChar); 
     public MessageBox(int width, int height, string content, Position position)
         :base(width, height, "", content, position) {}
     

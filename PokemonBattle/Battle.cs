@@ -1,10 +1,12 @@
+using PokemonBattle.GUI;
+
 namespace PokemonBattle;
 
 public class Battle
 {
     private Pokemon Player { get; }
     private Pokemon Enemy { get; }
-    private readonly Random random = new Random();
+    private readonly Random _random = new Random();
     public Battle(Pokemon player, Pokemon enemy)
     {
         Player = player;
@@ -16,7 +18,7 @@ public class Battle
         int playermove = -1;
         int enemymove = -1;
         int turnIndex = 0;
-        BattleUI UI = new BattleUI();
+        BattleUi ui = new BattleUi();
 
         while (Player.IsAlive && Enemy.IsAlive)
         {
@@ -28,14 +30,14 @@ public class Battle
             if (turnIndex == 0)
             {
 
-                UI.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
-                playermove = UI.DisplayInputMenu(Player.moves.ToArray()); // input
+                ui.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
+                playermove = ui.DisplayInputMenu(Player.Moves.ToArray()); // input
                 Player.UseMove(Enemy, playermove);
             }
             else
             {
-                UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
-                enemymove = random.Next(0, Enemy.moves.Count - 1);
+                ui.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
+                enemymove = _random.Next(0, Enemy.Moves.Count - 1);
                 Enemy.UseMove(Player, enemymove);
             }
 
@@ -44,11 +46,11 @@ public class Battle
         // Display one last time, else people won't know what hit them.
         if (turnIndex == 0)
         {
-            UI.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
+            ui.DisplayPokemonInfo(Player, Enemy, turnIndex, enemymove);
         }
         else
         {
-            UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
+            ui.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
         }
         if (Player.IsAlive) Player.UpdateExp(Enemy.Level.CurrentLevel);
         return (Player.IsAlive) ? 1 : 0;
