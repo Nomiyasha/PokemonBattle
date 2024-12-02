@@ -7,7 +7,6 @@ public class PokemonFactory
     public Pokemon Create(string pokemonName, int level)
     {
         MoveFactory moveFactory = new MoveFactory();
-        Level lvl = new Level(level);
         IMove[] charmanderMoveSet = [
             moveFactory.Create("ember"),
             moveFactory.Create("scratch"),
@@ -31,15 +30,12 @@ public class PokemonFactory
         
         return pokemonName.ToLower() switch
         {
-            "charmander" => new Pokemon("Charmander", new HealthStat(50, lvl), lvl, 
-                new AttackDefenceStat(77, lvl), new AttackDefenceStat(77, lvl), 
-                charmanderMoveSet.ToList(), Elements.Fire),
-            "squirtle" => new Pokemon("Squirtle", new HealthStat(50, lvl), lvl, 
-                new AttackDefenceStat(77, lvl), new AttackDefenceStat(77, lvl), 
-                squirtleMoveSet.ToList(), Elements.Water),
-            "bulbasaur" => new Pokemon("Bulbasaur", new HealthStat(50, lvl), lvl, 
-                new AttackDefenceStat(77, lvl), new AttackDefenceStat(77, lvl), 
-                bulbasaurMoveSet.ToList(), Elements.Grass),
+            "charmander" => new Pokemon("Charmander", 50, level, 
+                77, 77, charmanderMoveSet.ToList(), Elements.Fire),
+            "squirtle" => new Pokemon("Squirtle", 50, level,
+                77, 77, squirtleMoveSet.ToList(), Elements.Water),
+            "bulbasaur" => new Pokemon("Bulbasaur", 50, level,
+                77, 77, bulbasaurMoveSet.ToList(), Elements.Grass),
             _ => throw new ArgumentException("Invalid pokemonName")
         };
     }
