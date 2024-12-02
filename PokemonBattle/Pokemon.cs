@@ -58,6 +58,11 @@ public class Pokemon
         }
     }
 
+    public void UpdateExp(int level)
+    {
+        Level.SetExp(level);
+    }
+
     public void UpdateHealth(int change)
     {
         Health.UpdateStat(change);

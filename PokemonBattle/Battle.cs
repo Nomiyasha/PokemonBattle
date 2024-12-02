@@ -50,6 +50,7 @@ public class Battle
         {
             UI.DisplayPokemonInfo(Player, Enemy, turnIndex, playermove);
         }
+        if (Player.IsAlive) Player.UpdateExp(Enemy.Level.CurrentLevel);
         return (Player.IsAlive) ? 1 : 0;
     }
 }

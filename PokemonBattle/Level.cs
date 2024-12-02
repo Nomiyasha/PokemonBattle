@@ -11,9 +11,15 @@
             Xp = 0;
         }
 
-        public void CheckIfLevelUp()
+        public void SetExp(int level)
         {
-            if (Xp >= 100 * (Math.Pow(CurrentLevel, 3)))
+            Xp += level * 50;
+            CheckIfLevelUp();
+        }
+
+        private void CheckIfLevelUp()
+        {
+            if (Xp >= (Math.Pow(CurrentLevel, 3)))
             {
                 CurrentLevel++;
                 Xp -= (int)Math.Pow(CurrentLevel, 3);
