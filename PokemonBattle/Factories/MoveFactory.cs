@@ -24,8 +24,8 @@ public class MoveFactory
             "watergun" => new HealthMove(false, -40, "Watergun", "Squirts water to attack.", Elements.Water),
             "growl" => new AttackMove(false, -1, "Growl", "Reduces the foe's Attack.", Elements.Normal),
             "growth" => new AttackMove(true, 1, "Growth", "The user's body grows.", Elements.Normal),
-            "withdraw" => new DefenceMove(false, 1, "Withdraw", "Withdraws the body into shell.", Elements.Water),
-            "tailwhip" => new DefenceMove(true, -1, "Tail Whip", "Lowers the foe's Defense.", Elements.Normal),
+            "withdraw" => new DefenceMove(true, 1, "Withdraw", "Withdraws the body into shell.", Elements.Water),
+            "tailwhip" => new DefenceMove(false, -1, "Tail Whip", "Lowers the foe's Defense.", Elements.Normal),
             _ => throw new ArgumentException("Invalid moveName")
         };
     }
